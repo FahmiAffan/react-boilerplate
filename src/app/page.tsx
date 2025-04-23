@@ -5,6 +5,7 @@ import { trx } from "./User/UserHandler";
 import Button from "./components/Button";
 import Table from "./components/Table";
 import { useState } from "react";
+import './style/index.css';
 
 const data = [
   { name: "fahmi", age: 18 },
@@ -54,7 +55,7 @@ export default function Home() {
           ))}
         </ul>
 
-        <div>
+        <div className="flex flex-col gap-4">
           <h1>Profil</h1>
           <p>Tahun lahir saya {form.lahir}</p>
           <p>Umur saya {form.age}</p>
