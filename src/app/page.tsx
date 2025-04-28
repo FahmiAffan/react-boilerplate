@@ -5,7 +5,7 @@ import { trx } from "./User/UserHandler";
 import Button from "./components/Button";
 import Table from "./components/Table";
 import { useState } from "react";
-import './style/index.css';
+import "./style/index.css";
 
 const data = [
   { name: "fahmi", age: 18 },
@@ -36,6 +36,18 @@ export default function Home() {
 
   const handleSubmit = () => {
     console.log(form);
+    fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: form.name,
+        age: form.age,
+        phoneNumber: form.phoneNumber,
+        lahir: form.lahir,
+      }),
+    });
   };
 
   return (
@@ -79,7 +91,9 @@ export default function Home() {
           onChange={(val) => {
             setForm({ ...form, lahir: val.target.value });
           }}
-          onBlur={(val) => setForm({ ...form, age: 2025 - parseInt(form.lahir) })}
+          onBlur={(val) =>
+            setForm({ ...form, age: 2025 - parseInt(form.lahir) })
+          }
         />
         <button onClick={handleSubmit}>Submit</button>
       </main>
