@@ -6,14 +6,9 @@ import { useParams } from "react-router";
 
 import { ToastContainer, toast } from "react-toastify";
 
-function useQuery() {
-  const { search } = useLocation();
-}
-
 function App() {
   const [count, setCount] = useState(0);
 
-  const query = useQuery();
   const params = useParams();
 
   console.log("Params:", params.id);

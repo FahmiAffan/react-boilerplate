@@ -3,6 +3,7 @@ import App from "../App";
 import Home from "../pages/home/HomePage";
 import AboutPage from "../pages/about/AboutPage";
 import { UsersPage } from "../pages/users/UsersPage";
+import { LoginForm, RegisterForm } from "../pages/AuthForm";
 
 export const router = createBrowserRouter([
   {
@@ -20,5 +21,13 @@ export const router = createBrowserRouter([
   {
     path: "/users/:id",
     element: <UsersPage />,
+  },
+  {
+    path: "/login",
+    element: <LoginForm />,
+  },
+  {
+    path: "/RegisterForm",
+    element: <RegisterForm />,
   },
 ]);
