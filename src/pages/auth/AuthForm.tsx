@@ -1,19 +1,29 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { TextField } from "../components/input/text-field";
+import { TextField } from "../../components/input/text-field";
 import { ToastContainer, toast } from "react-toastify";
-import { Button } from "../components/button/Button";
-
+import { Button } from "../../components/button/Button";
+import { type LoginFormData } from "./Interface";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { LoginSchema } from "./AuthSchema";
 
 interface IFormInput {
   username: string;
   password: string;
   confirm_password?: string;
 }
-export const LoginForm = () => {
-  const { register, reset , handleSubmit } = useForm<IFormInput>();
 
-  const onSubmit = (data: IFormInput) => {
+export const LoginForm = () => {
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(LoginSchema), // Integrasi Zod di sini
+  });
+
+  const onSubmit = (data: LoginFormData) => {
     try {
       const result = fetch("http://localhost:4000/v1/auth/login", {
         method: "POST",
@@ -72,6 +82,7 @@ export const LoginForm = () => {
             register={register("username")}
             label="Username"
           />
+          {errors.username && <p>This Field Required</p>}
           <TextField
             required
             register={register("password")}

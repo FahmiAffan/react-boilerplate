@@ -3,7 +3,7 @@ import App from "../App";
 import Home from "../pages/home/HomePage";
 import AboutPage from "../pages/about/AboutPage";
 import { UsersPage } from "../pages/users/UsersPage";
-import { LoginForm, RegisterForm } from "../pages/AuthForm";
+import { LoginForm, RegisterForm } from "../pages/auth/AuthForm";
 
 export const router = createBrowserRouter([
   {
