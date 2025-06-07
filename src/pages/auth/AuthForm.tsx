@@ -87,6 +87,7 @@ export const LoginForm = () => {
             required
             register={register("password")}
             label="Password"
+            type="password"
           />
         </div>
 
