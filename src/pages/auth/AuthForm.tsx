@@ -1,4 +1,3 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import { TextField } from "../../components/input/text-field";
 import { ToastContainer, toast } from "react-toastify";
@@ -6,9 +5,10 @@ import { Button } from "../../components/button/Button";
 import { type LoginFormData } from "./Interface";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginSchema } from "./AuthSchema";
+import api from "../../lib/axios";
 
 interface IFormInput {
-  username: string;
+  hahNumber: string;
   password: string;
   confirm_password?: string;
 }
@@ -24,28 +24,12 @@ export const LoginForm = () => {
   });
 
   const onSubmit = (data: LoginFormData) => {
+    console.log(data);
     try {
-      const result = fetch("http://localhost:4000/v1/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+      api.post('/api/auth/login', data).then((res) => {
+        console.log(res);
+        reset();
       });
-
-      result
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          reset();
-          toast.success("Login successful!");
-          return response.json();
-        })
-        .catch((error) => {
-          toast.error("Login Failed!");
-          throw new Error(`Fetch error: ${error.message}`);
-        });
     } catch (error) {
       console.error("Error submitting form:", error);
     }
@@ -79,10 +63,10 @@ export const LoginForm = () => {
         <div className="flex flex-col gap-2">
           <TextField
             required
-            register={register("username")}
-            label="Username"
+            register={register("hahNumber")}
+            label="hahNumber"
           />
-          {errors.username && <p>This Field Required</p>}
+          {errors.hahNumber && <p>This Field Required</p>}
           <TextField
             required
             register={register("password")}
@@ -156,8 +140,8 @@ export const RegisterForm = () => {
         <div className="flex flex-col gap-2">
           <TextField
             required
-            register={register("username")}
-            label="Username"
+            register={register("hahNumber")}
+            label="hahNumber"
           />
           <TextField
             required

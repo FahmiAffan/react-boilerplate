@@ -1,19 +1,18 @@
-import React, { useState } from "react";
 import "./App.css";
 import { Icon } from "@iconify/react";
-import { useLocation } from "react-router";
 import { useParams } from "react-router";
 
 import { ToastContainer, toast } from "react-toastify";
 
 function App() {
-  const [count, setCount] = useState(0);
 
   const params = useParams();
 
   console.log("Params:", params.id);
 
-  const notify = () => toast.error("Wow so easy!");
+  const notify = () => {
+    toast.error("Wow so easy!");
+  };
 
   return (
     <>
