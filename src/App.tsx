@@ -16,7 +16,6 @@ function App() {
 
   return (
     <>
-      <Icon icon={"mdi-light:home"} />
       <h1 className="text-3xl font-bold underline text-red-500">
         Hello world!
       </h1>
@@ -32,7 +31,6 @@ function App() {
         pauseOnHover
         theme="colored"
       />
-      <button onClick={notify}>click me</button>
     </>
   );
 }
